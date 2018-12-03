@@ -1,0 +1,49 @@
+Note: The explanation is quite long, so if you want to see the code go here (https://gist.github.com/CameronAavik/2cd37a899290da1e8ad43c6d51a28796).
+
+I was going through the solutions posted in this thread and noticed that a lot of solutions would carry out multiple passes of the frequency changes, and would make use of a set to record which frequencies had been seen before. For the purposes of the puzzle inputs supplied, this worked fine because the range of frequencies was fairly small. However, if the range of frequencies is very large, then it performs poorly. To prove that this is the case, try running your solution on the following puzzle input:
+
++10000000
+-9999999
+When you do this the frequency will go 0, 10000000, 1, 10000001, 2, 10000002, 3, ... and it would only stop at 10000000. This will loop 10000000 times before you find your first repetition, the seen set will contain 10000000 items as well and so it doesn't scale well on both time and memory.
+
+There exists an O(n log n) solution where n is the number of frequency diffs (in the case above, that would be 2).
+
+To see how this works, let's look at another puzzle input:
+
++1
++1
++10
+-9
+Let's see how this plays out:
+
+ITERATION 1: 0, 1, 2, 12,
+
+ITERATION 2: 3, 4, 5, 15,
+
+ITERATION 3: 6, 7, 8, 18,
+
+ITERATION 4: 9, 10, 11, 21,
+
+ITERATION 5: 12
+
+The thing to notice here is that each row we see is offset by 3 from the previous row. The reason for this is because 3 is the frequency after running through one iteration, so next iteration it will increase by 3 again. It turns out we can use this property in our favour. For each value in the first row, we know that it will increase by 3 at a time, so I know that I will eventually hit 12 again because I start at 0 and after 4 iterations that will have increased by 12. Similarly I can also be confident that I will eventually hit frequency 1000 after 333 iterations since we hit a frequency of 1 in the first line and 1 + 333 * 3 = 1000.
+
+One other important property to identify is that whenever we see our first repetition, the value that gets repeated would have been one of the values in the first row. This is because if a new frequency in iteration n were to repeat something from the second row, this new frequency would have been new frequency - shift in iteration n - 1, which would have also appeared in the first row.
+
+So, now what do we know about the repetition? That the repetition is some number in the first row + a multiple of the sum after one iteration, and that the result is also in the first row. The first repetition occurs when the number of iterations is minimised.
+
+We can now reduce this problem to something simpler: Given a set of frequencies, A, find a frequency x inside A such that x = y + shift * n where y is some frequency in A, shift is the frequency after one iteration and n is minimised. We can solve this by grouping the integers in A based on their value modulo shift. If we take the example from earlier where shift=3, then there will be three groups:
+
+mod 3 = 0: 0, 12
+
+mod 3 = 1: 1
+
+mod 3 = 2: 2
+
+These groups are important because they tell us which numbers would overlap eventually if we keep adding by shift. 0 and 12 are in the same group because 0 + 4*shift is 12. To minimise the n value, all we have to do is find two integers that are in the same group where their difference is minimal. In this example it is easy because there is only one group that contains more than one integer. Since shift is positive we choose frequency 12 at the index of 0. If shift was negative, we would choose frequency 0 at the index of 12. If we have more than two integers inside a group, we need to make sure to sort the group and we can loop through the differences in order.
+
+There are a few extra edge cases to consider. One being the scenario in which there are multiple values that all have the same distance. In that case we need to choose the value of x that appears first inside A, so we need to keep track of the index inside A as well. Some languages might not handle the modulo well when shift is negative, in that case you can do modulo abs(shift) and it will work the same. Another edge case is when the repetition occurs inside iteration 1, so we need to check for that explicitly. Another edge case is when shift is 0, if this happens then we will never have a solution the solution is 0. Lastly, if all the groups only contain 1 number then there is no solution.
+
+So with all this together, we can implement an O(n log n) solution to the problem as seen in this gist on GitHub:
+
+Now if we run this against our evil puzzle input from earlier, it runs almost instantly rather than simulating the frequencies for 10000000 loops.

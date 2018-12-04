@@ -34,7 +34,6 @@ def findDifference(mapping, line1, line2):
 def find(mapping, array):
 	targets = array
 	for line in array:
-		targets.remove(line)
 		for target in targets:
 			result = findDifference(mapping, line, target)
 			if result[0] == True:
@@ -48,7 +47,12 @@ if __name__ == "__main__":
 	print(findDifference(mapping, "fghij", "fguij")[0] == True) # expect True
 	
 	sampleList = ["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"]
-	print(find(mapping, sampleList) == (True, 1, ["f", "g", "i", "j"], "fguij", "fghij"))
+	print(find(mapping, sampleList)[0] == True)
+	
+	f = open("input.txt", "r")
+	input = f.read().split()
+	#print(input)
+	print(find(mapping, input))
 	
 	
 	

@@ -33,8 +33,8 @@ def findDifference(mapping, line1, line2):
 
 def find(mapping, array):
 	targets = array
-	for line in array:
-		for target in targets:
+	for index, line in enumerate(array):
+		for target in targets[index:]:
 			result = findDifference(mapping, line, target)
 			if result[0] == True:
 				return(result)

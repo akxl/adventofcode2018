@@ -27,12 +27,28 @@ def findDifference(mapping, line1, line2):
 		else:
 			similarLetters.append(line1[index])
 	if numberOfDifferences == 1:
-		return True, numberOfDifferences, similarLetters
+		return True, numberOfDifferences, similarLetters, line1, line2
 	else:
-		return False, numberOfDifferences, similarLetters
+		return False, numberOfDifferences, similarLetters, "", ""
+
+def find(mapping, array):
+	targets = array
+	for line in array:
+		targets.remove(line)
+		for target in targets:
+			result = findDifference(mapping, line, target)
+			if result[0] == True:
+				return(result)
+	return False, -1, [], "", ""
+				
 	
 if __name__ == "__main__":
 	mapping = makeEncodingMap()
-	print(findDifference(mapping, "abcde", "axcye"))
-	print(findDifference(mapping, "fghij", "fguij"))
+	print(findDifference(mapping, "abcde", "axcye")[0] == False) # expect False
+	print(findDifference(mapping, "fghij", "fguij")[0] == True) # expect True
+	
+	sampleList = ["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"]
+	print(find(mapping, sampleList) == (True, 1, ["f", "g", "i", "j"], "fguij", "fghij"))
+	
+	
 	

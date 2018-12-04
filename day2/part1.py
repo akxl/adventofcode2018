@@ -45,3 +45,12 @@ if __name__ == "__main__":
 	sampleList = ["abcdef", "bababc", "abbcde", "abcccd", "aabcdd", "abcdee", "ababab"]
 	print(checksum(sampleList) == 12)
 	
+	# reading and computing actual checksum
+	f = open("input.txt", "r")
+	input = f.read().split()
+	print(checksum(input)) # answer is 8892
+	
+	
+	
+	
+	

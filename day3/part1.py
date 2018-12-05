@@ -48,6 +48,31 @@ def getClothUsageV2(lines):
 				clothUsage.add(coordinatePair)
 	return(len(overlaps))
 	
+def getNonOverlap(lines):
+	clothUsage = set()
+	overlaps = set()
+	for line in lines:
+		id, offsets, dimensions = readLine(line)
+		coordinates = getClothCoordinates(offsets[0], offsets[1], dimensions[0], dimensions[1])
+		for coordinatePair in coordinates:
+			if coordinatePair in clothUsage:
+				overlaps.add(coordinatePair)
+			else:
+				clothUsage.add(coordinatePair)
+	for line in lines:
+		id, offsets, dimensions = readLine(line)
+		coordinates = getClothCoordinates(offsets[0], offsets[1], dimensions[0], dimensions[1])
+		result = checkIfOverlapping(coordinates, overlaps)
+		if result == True:
+			return("The non overlapping piece is: " + id)
+	return("nope")
+			
+
+def checkIfOverlapping(coordinates, overlaps):
+	for coordinatePair in coordinates:
+		if coordinatePair in overlaps:
+			return(False)
+	return(True)
 
 if __name__ == "__main__":
 	print(getClothCoordinates(1, 2, 2, 2) == [(2,3),(2,4),(3,3),(3,4)])
@@ -67,4 +92,5 @@ if __name__ == "__main__":
 	#actualClothUsage = getClothUsage(input)
 	#print(getOverlap(actualClothUsage))
 	
-	print(getClothUsageV2(input))
+	print(getClothUsageV2(input)) # part 1: 116491
+	print(getNonOverlap(input)) # part 2: #707

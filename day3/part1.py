@@ -34,6 +34,20 @@ def getOverlap(dictionary):
 			overlaps += 1
 	return(overlaps)
 		
+def getClothUsageV2(lines):
+	clothUsage = set()
+	overlaps = set()
+	for line in lines:
+		id, offsets, dimensions = readLine(line)
+		print(id)
+		coordinates = getClothCoordinates(offsets[0], offsets[1], dimensions[0], dimensions[1])
+		for coordinatePair in coordinates:
+			if coordinatePair in clothUsage:
+				overlaps.add(coordinatePair)
+			else:
+				clothUsage.add(coordinatePair)
+	return(len(overlaps))
+	
 
 if __name__ == "__main__":
 	print(getClothCoordinates(1, 2, 2, 2) == [(2,3),(2,4),(3,3),(3,4)])
@@ -41,6 +55,8 @@ if __name__ == "__main__":
 	
 	clothUsage = getClothUsage(["#1 @ 1,3: 4x4", "#2 @ 3,1: 4x4", "#3 @ 5,5: 2x2"])
 	print(getOverlap(clothUsage) == 4)
+	print(getClothUsageV2(["#1 @ 1,3: 4x4", "#2 @ 3,1: 4x4", "#3 @ 5,5: 2x2"]) == 4)
+	
 	
 	print("\n")
 	
@@ -48,5 +64,7 @@ if __name__ == "__main__":
 	f = open("input.txt", "r")
 	input = f.read().split("\n")
 	
-	actualClothUsage = getClothUsage(input)
-	print(getOverlap(actualClothUsage))
+	#actualClothUsage = getClothUsage(input)
+	#print(getOverlap(actualClothUsage))
+	
+	print(getClothUsageV2(input))

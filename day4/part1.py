@@ -38,10 +38,41 @@ def groupShifts(processedLines):
 			currentDate = date
 			data.append((year, month, day, hour, minute, content))
 	return(shifts)
-			
+
+def getGuardAndSleepingMinutes(shifts):
+	keys = shifts.keys()
+	perGuard = {}
+	for key in keys:
+		guard = ""
+		startSleep = 0
+		sleepingMinutes = set()
+		for i, line in enumerate(shifts[key]):
+			year, month, day, hour, minute, content = line
+			if i == 0:
+				guard = content.split()[1]
+			elif content == "falls asleep":
+				startSleep = minute
+			elif content == "wakes up":
+				sleepingMinutes.update(range(startSleep, minute))
+				startSleep = 0
+		if guard not in list(perGuard.keys()):
+			perGuard[guard] = [sleepingMinutes]
+		else:
+			#oldList = deepcopy(perGuard[guard])
+			#perGuard[guard] = oldList.append(sleepingMinutes)
+			perGuard[guard].append(sleepingMinutes)
+	return(perGuard)
 		
-		
-		
+def findGuardWithMostSleep(perGuardInfo):
+	keys = perGuardInfo.keys()
+	worstGuard = ("none", 0)
+	for key in keys:
+		total = 0
+		for set in perGuardInfo[key]:
+			total += len(set)
+		if total > worstGuard[1]:
+			worstGuard = (key, total)
+	return(worstGuard)
 	
 if __name__ == "__main__":
 	# tests
@@ -54,10 +85,34 @@ if __name__ == "__main__":
 		"[1518-07-08 23:58] Guard #1997 begins shift",
 		"[1518-07-09 00:58] wakes up"
 	]
+	
+	testInputArray2 = [
+	"[1518-11-01 00:00] Guard #10 begins shift",
+	"[1518-11-01 00:05] falls asleep",
+	"[1518-11-01 00:25] wakes up",
+	"[1518-11-01 00:30] falls asleep",
+	"[1518-11-01 00:55] wakes up",
+	"[1518-11-01 23:58] Guard #99 begins shift",
+	"[1518-11-02 00:40] falls asleep",
+	"[1518-11-02 00:50] wakes up",
+	"[1518-11-03 00:05] Guard #10 begins shift",
+	"[1518-11-03 00:24] falls asleep",
+	"[1518-11-03 00:29] wakes up",
+	"[1518-11-04 00:02] Guard #99 begins shift",
+	"[1518-11-04 00:36] falls asleep",
+	"[1518-11-04 00:46] wakes up",
+	"[1518-11-05 00:03] Guard #99 begins shift",
+	"[1518-11-05 00:45] falls asleep",
+	"[1518-11-05 00:55] wakes up"
+	]
 	#print(sortAndProcessLog(testInputArray))
-	print(groupShifts(sortAndProcessLog(testInputArray)))
+	#print(groupShifts(sortAndProcessLog(testInputArray)))
+	testPerGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(testInputArray2)))
+	print(findGuardWithMostSleep(testPerGuardInfo) == ("#10", 50)) 	# expect 50 minutes of sleep by guard 10
+	
 	
 	# actual
 	#f = open("input.txt", "r")
 	#inputList = f.read().split("\n")
-	#print(groupShifts(sortAndProcessLog(inputList)))
+	#perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
+	#print(findGuardWithMostSleep(perGuardInfo))

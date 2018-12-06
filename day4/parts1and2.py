@@ -1,8 +1,10 @@
-# Advent of code Day 4 Part 1
+# Advent of code Day 4 Parts 1 and 2
 # Author: Aaron Leong
 
 from datetime import datetime, timedelta
 from copy import deepcopy
+
+# Part 1
 
 def sortAndProcessLog(lines):
 	processedLog = []
@@ -26,6 +28,7 @@ def groupShifts(processedLines):
 	shifts = {}
 	data = []
 	currentDate = datetime(1,1,1)
+	lastIndex = len(processedLines) - 1
 	for i, line in enumerate(processedLines):
 		date, year, month, day, hour, minute, content = line
 		if i == 0:
@@ -37,6 +40,8 @@ def groupShifts(processedLines):
 			data = []
 			currentDate = date
 			data.append((year, month, day, hour, minute, content))
+		if i == lastIndex:
+			shifts[currentDate] = deepcopy(data)
 	return(shifts)
 
 def getGuardAndSleepingMinutes(shifts):
@@ -89,9 +94,26 @@ def findMostSleptMinute(perGuardInfo, guardId):
 			mostSleptMinute = minute
 			mostSleptMinuteCount = minuteCount[minute]
 	return(mostSleptMinute, mostSleptMinuteCount)
+
+
+# Part 2
+
+def countFrequencyPerGuard(perGuardInfo):
+	guards = perGuardInfo.keys()
+	frequencyTablePerGuard = {}
+	for guard in guards:
+		frequencyTable = {}
+		for minute in range(0, 61):
+			frequencyTable[minute] = 0
+		for setOfMinutesAsleep in perGuardInfo[guard]:
+			for minute in list(setOfMinutesAsleep):
+				frequencyTable[minute] += 1
+		frequencyTablePerGuard[guard] = frequencyTable
+	return(frequencyTablePerGuard)
+
 	
 if __name__ == "__main__":
-	############# tests
+	############# Part 1 tests
 	testInputArray = [
 		"[1518-05-08 00:12] falls asleep",
 		"[1518-09-09 00:04] Guard #1543 begins shift",
@@ -122,15 +144,24 @@ if __name__ == "__main__":
 	"[1518-11-05 00:55] wakes up"
 	]
 
+	print("Part 1 tests")
 	testPerGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(testInputArray2)))
+	
 	print(findGuardWithMostSleep(testPerGuardInfo) == ("#10", 50)) 	# expect 50 minutes of sleep by guard 10
 	print(findMostSleptMinute(testPerGuardInfo, "#10") == (24, 2)) # expect 24th minute at 2 times
 	
 	
-	############# actual
-	f = open("input.txt", "r")
-	inputList = f.read().split("\n")
-	perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
-	worstGuard = findGuardWithMostSleep(perGuardInfo)
-	print(worstGuard)
-	print(findMostSleptMinute(perGuardInfo, worstGuard[0]))
+	############# Part 1 actual
+	print("Part 1 actual")
+	#f = open("input.txt", "r")
+	#inputList = f.read().split("\n")
+	#perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
+	#worstGuard = findGuardWithMostSleep(perGuardInfo) # ("#2351", 451)
+	#print(worstGuard)
+	#print(findMostSleptMinute(perGuardInfo, worstGuard[0])) # (40, 13)
+	
+	
+	
+	############# Part 2 test
+	print("Part 2 tests")
+	print(countFrequencyPerGuard(testPerGuardInfo))

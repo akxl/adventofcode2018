@@ -74,6 +74,22 @@ def findGuardWithMostSleep(perGuardInfo):
 			worstGuard = (key, total)
 	return(worstGuard)
 	
+def findMostSleptMinute(perGuardInfo, guardId):
+	sleepInfo = perGuardInfo[guardId]
+	minuteCount = {}
+	for i in range(0, 61):
+		minuteCount[i] = 0
+	for set in sleepInfo:
+		for minute in list(set):
+			minuteCount[minute] += 1
+	mostSleptMinute = -1
+	mostSleptMinuteCount = -1
+	for minute in minuteCount.keys():
+		if minuteCount[minute] > mostSleptMinuteCount:
+			mostSleptMinute = minute
+			mostSleptMinuteCount = minuteCount[minute]
+	return(mostSleptMinute, mostSleptMinuteCount)
+	
 if __name__ == "__main__":
 	# tests
 	testInputArray = [
@@ -109,6 +125,7 @@ if __name__ == "__main__":
 	#print(groupShifts(sortAndProcessLog(testInputArray)))
 	testPerGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(testInputArray2)))
 	print(findGuardWithMostSleep(testPerGuardInfo) == ("#10", 50)) 	# expect 50 minutes of sleep by guard 10
+	print(findMostSleptMinute(testPerGuardInfo, "#10") == (24, 2)) # expect 24th minute at 2 times
 	
 	
 	# actual

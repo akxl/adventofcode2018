@@ -111,6 +111,14 @@ def countFrequencyPerGuard(perGuardInfo):
 		frequencyTablePerGuard[guard] = frequencyTable
 	return(frequencyTablePerGuard)
 
+def getWorstGuardByStrategy2(perGuardInfo):
+	guards = perGuardInfo.keys()
+	worstGuard = ("none", -1, -1) # guard, minute, frequency
+	for guard in guards:
+		for minute in range(0, 61):
+			if perGuardInfo[guard][minute] > worstGuard[2]:
+				worstGuard = (guard, minute, perGuardInfo[guard][minute])
+	return(worstGuard)
 	
 if __name__ == "__main__":
 	############# Part 1 tests
@@ -153,15 +161,19 @@ if __name__ == "__main__":
 	
 	############# Part 1 actual
 	print("Part 1 actual")
-	#f = open("input.txt", "r")
-	#inputList = f.read().split("\n")
-	#perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
-	#worstGuard = findGuardWithMostSleep(perGuardInfo) # ("#2351", 451)
-	#print(worstGuard)
-	#print(findMostSleptMinute(perGuardInfo, worstGuard[0])) # (40, 13)
+	f = open("input.txt", "r")
+	inputList = f.read().split("\n")
+	perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
+	worstGuard = findGuardWithMostSleep(perGuardInfo) # ("#2351", 451)
+	print(worstGuard)
+	print(findMostSleptMinute(perGuardInfo, worstGuard[0])) # (40, 13)
 	
 	
 	
 	############# Part 2 test
 	print("Part 2 tests")
-	print(countFrequencyPerGuard(testPerGuardInfo))
+	print(getWorstGuardByStrategy2(countFrequencyPerGuard(testPerGuardInfo)) == ("#99", 45, 3)) # expect guard 99, who slept on the 45th minute for a total of 3 times
+	
+	############# Part 2 actual
+	print("Part 2 actual")
+	print(getWorstGuardByStrategy2(countFrequencyPerGuard(perGuardInfo)))

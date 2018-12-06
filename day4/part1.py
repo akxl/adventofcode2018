@@ -91,7 +91,7 @@ def findMostSleptMinute(perGuardInfo, guardId):
 	return(mostSleptMinute, mostSleptMinuteCount)
 	
 if __name__ == "__main__":
-	# tests
+	############# tests
 	testInputArray = [
 		"[1518-05-08 00:12] falls asleep",
 		"[1518-09-09 00:04] Guard #1543 begins shift",
@@ -121,15 +121,16 @@ if __name__ == "__main__":
 	"[1518-11-05 00:45] falls asleep",
 	"[1518-11-05 00:55] wakes up"
 	]
-	#print(sortAndProcessLog(testInputArray))
-	#print(groupShifts(sortAndProcessLog(testInputArray)))
+
 	testPerGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(testInputArray2)))
 	print(findGuardWithMostSleep(testPerGuardInfo) == ("#10", 50)) 	# expect 50 minutes of sleep by guard 10
 	print(findMostSleptMinute(testPerGuardInfo, "#10") == (24, 2)) # expect 24th minute at 2 times
 	
 	
-	# actual
-	#f = open("input.txt", "r")
-	#inputList = f.read().split("\n")
-	#perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
-	#print(findGuardWithMostSleep(perGuardInfo))
+	############# actual
+	f = open("input.txt", "r")
+	inputList = f.read().split("\n")
+	perGuardInfo = getGuardAndSleepingMinutes(groupShifts(sortAndProcessLog(inputList)))
+	worstGuard = findGuardWithMostSleep(perGuardInfo)
+	print(worstGuard)
+	print(findMostSleptMinute(perGuardInfo, worstGuard[0]))

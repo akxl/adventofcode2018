@@ -94,17 +94,28 @@ def findLabelsOnTheBoundary(twoDArray):
 	return(labels)
 
 
-def countMaxArea(twoDArray, setOfInfinites):
+def countArea(twoDArray, setOfInfinites):
 	relevantColumns = list(range(1, len(twoDArray[0]) - 1))
 	searchArea = twoDArray[1:-1]
 	numOfRow = len(searchArea)
+	count = {}
 	for rowNum in range(0, numOfRow):
 		for colNum in relevantColumns:
-			for infinite in list(setOfInfinites):
-				print("todo")
-				
-	return(1)
-
+			label = searchArea[rowNum][colNum]
+			if label not in setOfInfinites:
+				if label not in list(count.keys()):
+					count[label] = 1
+				else:
+					count[label] += 1
+	return(count)
+	
+def findMax(dictionary):
+	maxLabel = (None, -1)
+	for key in dictionary.keys():
+		if dictionary[key] > maxLabel[1]:
+			maxLabel = (key, dictionary[key])
+	return(maxLabel)
+			
 def readInputs(filename):
 	f = open(filename, "r")
 	lines = f.read().split("\n")
@@ -128,8 +139,11 @@ if __name__ == "__main__":
 		(8, 9)
 	]
 	
-	mapOfClosests = drawMapOfClosestAreas(testListOfCoordinates)
-	testInfinites = findLabelsOnTheBoundary(mapOfClosests)
+	testMapOfClosests = drawMapOfClosestAreas(testListOfCoordinates)
+	testInfinites = findLabelsOnTheBoundary(testMapOfClosests)
 	print(testInfinites ==  set([0,1,2,'.',5]))
+	testCount = countArea(testMapOfClosests, testInfinites)
+	print(testCount == {3:9, 4:17})
+	print(findMax(testCount) == (4,17))
 	
 	

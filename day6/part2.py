@@ -54,4 +54,4 @@ if __name__ == "__main__":
 	input = readInputs("input.txt")
 	distances = findDistances(input)
 	numOfCoordinates = countNumberOfCoordinatesWithinRange(10000, distances)
-	print(numOfCoordinates)
+	print(numOfCoordinates) # 38670

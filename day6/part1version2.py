@@ -1,4 +1,4 @@
-# Advent of Code 2018 Day 5 Part 1 version 1
+# Advent of Code 2018 Day 5 Part 1 version 2
 # Author: Aaron Leong
 
 # In version 1, I was thinking in a very generalised way. In this version, I am going to attemp to solve this exercise by making the following assumption:
@@ -39,6 +39,7 @@ def get2dCoordinatesFurtherstFromOrigin(listOfCoordinates):
 			furtherstPoint = coordinates
 	return(furtherstPoint)
 
+# TODO: will need to revisit logic here
 def draw2dMapOfSpecifiedPoints(listOfCoordinates):
 	pointFurthestFromOrigin = get2dCoordinatesFurtherstFromOrigin(listOfCoordinates)
 	for i in range(0, pointFurthestFromOrigin[0] + 2):
@@ -49,3 +50,52 @@ def draw2dMapOfSpecifiedPoints(listOfCoordinates):
 			else:
 				row += "."
 		print(row)
+		
+def drawMapOfClosestAreas(listOfCoordinates):
+	pointFurthestFromOrigin = get2dCoordinatesFurtherstFromOrigin(listOfCoordinates)
+	numOfCol = pointFurthestFromOrigin[0] + 1
+	numOfRow = pointFurthestFromOrigin[1] + 1
+	result = []
+	for rowNum in range(0, numOfRow):
+		rowResult = []
+		for colNum in range(0, numOfCol):
+			closestLabel = -1
+			closestDistance = sys.maxsize
+			for label, coordinates in enumerate(listOfCoordinates):
+				print(label, coordinates, (colNum,rowNum))
+				distance = gridDistance((colNum, rowNum), coordinates)
+				print(distance)
+				if distance < closestDistance:
+					closestLabel = label
+					closestDistance = distance
+			rowResult.append(closestLabel)
+		result.append(rowResult)
+	return(result)
+
+
+def readInputs(filename):
+	f = open(filename, "r")
+	lines = f.read().split("\n")
+	result = []
+	for line in lines:
+		numbers = list(map(int, line.split(",")))
+		result.append((numbers[0], numbers[1]))
+	return(result)
+
+
+if __name__ == "__main__":
+	
+	#################### Test Part 1
+	
+	testListOfCoordinates = [
+		(1, 1),
+		(1, 6),
+		(8, 3),
+		(3, 4),
+		(5, 5),
+		(8, 9)
+	]
+	
+	print(drawMapOfClosestAreas(testListOfCoordinates))
+	
+	

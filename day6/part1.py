@@ -40,6 +40,15 @@ def draw2dMapOfSpecifiedPoints(listOfCoordinates):
 			else:
 				row += "."
 		print(row)
+		
+def areaOfPolygonIn2dEuclideanSpace(listOfCoordinates):
+	numberOfCoordinates = len(listOfCoordinates)
+	area = 0
+	j = numberOfCoordinates - 1
+	for i in range(numberOfCoordinates):
+		area += ((listOfCoordinates[j][1] + listOfCoordinates[i][1]) * (listOfCoordinates[j][0] - listOfCoordinates[i][0]))
+		j = i
+	return(abs(area)/2.0)
 
 if __name__ == "__main__":
 	
@@ -57,4 +66,7 @@ if __name__ == "__main__":
 	]
 	
 	print(get2dCoordinatesFurtherstFromOrigin(testListOfCoordinates) == (8,9))
+	print(areaOfPolygonIn2dEuclideanSpace([(2,2), (4,10), (9,7), (11,2)]) == 45.5)
 	draw2dMapOfSpecifiedPoints(testListOfCoordinates)
+	
+	

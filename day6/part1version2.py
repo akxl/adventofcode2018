@@ -74,6 +74,25 @@ def drawMapOfClosestAreas(listOfCoordinates):
 		result.append(rowResult)
 	return(result)
 
+	
+def findLabelsOnTheBoundary(twoDArray):
+	labels = set()
+	numOfRow = len(twoDArray)
+	numOfCol = len(twoDArray[0])
+	
+	firstRow = twoDArray[0]
+	for cell in firstRow:
+		labels.add(cell)
+	lastRow = twoDArray[1]
+	for cell in lastRow:
+		labels.add(cell)
+	for rowNum in range(1, numOfRow):
+		leftCell = twoDArray[rowNum][0]
+		labels.add(leftCell)
+		rightCell = twoDArray[rowNum][numOfCol - 1]
+		labels.add(rightCell)
+	return(labels)
+	
 
 def readInputs(filename):
 	f = open(filename, "r")
@@ -98,6 +117,7 @@ if __name__ == "__main__":
 		(8, 9)
 	]
 	
-	print(drawMapOfClosestAreas(testListOfCoordinates))
+	infinite = drawMapOfClosestAreas(testListOfCoordinates)
+	print(findLabelsOnTheBoundary(infinite))
 	
 	

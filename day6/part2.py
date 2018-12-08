@@ -5,8 +5,8 @@ from part1version2 import gridDistance, get2dCoordinatesFurtherstFromOrigin, rea
 
 def findDistances(listOfCoordinates):
 	pointFurthestFromOrigin = get2dCoordinatesFurtherstFromOrigin(listOfCoordinates)
-	numOfCol = pointFurthestFromOrigin[0] + 1
-	numOfRow = pointFurthestFromOrigin[1] + 1
+	numOfCol = pointFurthestFromOrigin[0] + 200 # these addtions have to variable as there may be coordinates outside of this quadrilateral that have distances <10000
+	numOfRow = pointFurthestFromOrigin[1] + 200
 	result = []
 	for rowNum in range(0, numOfRow):
 		rowResult = []
@@ -47,3 +47,11 @@ if __name__ == "__main__":
 	#print(testDistances)
 	testNumOfCoordinates = countNumberOfCoordinatesWithinRange(32, testDistances)
 	print(testNumOfCoordinates == 16)
+	
+	
+	#################### Actual Part 2
+	
+	input = readInputs("input.txt")
+	distances = findDistances(input)
+	numOfCoordinates = countNumberOfCoordinatesWithinRange(10000, distances)
+	print(numOfCoordinates)

@@ -1,6 +1,7 @@
 # Advent of Code 2018 Part 2
 # Author: Aaron Leong
 
+import sys
 from part1version2 import processString 
 
 def getUniqueComponents(string):
@@ -23,6 +24,17 @@ def removeComponent(string, component):
 				possible = False
 	return("".join(listOfLetters))
 
+def findShortest(string):
+	minLength = sys.maxsize
+	minLengthString = "none"
+	for component in list(getUniqueComponents(string)):
+		print("Current component: " + str(component))
+		shortenedString = removeComponent(string, component)
+		processedString = processString(shortenedString)
+		if processedString[0] < minLength:
+			minLength = processedString[0]
+			minLengthString = processedString[1]
+	return(minLength, minLengthString)
 
 if __name__ == "__main__":
 	
@@ -42,3 +54,11 @@ if __name__ == "__main__":
 	print(processString(testReducedString2) == (8, "daCAcaDA"))
 	print(processString(testReducedString3) == (4, "daDA"))
 	print(processString(testReducedString4) == (6, "abCBAc"))
+	print(findShortest(testString) == ((4, "daDA")))
+	
+	######### part 2 actual
+	print("########## Part 2 Actual ##########")
+	print("########## Part 1 Actual ##########")
+	f = open("input.txt", "r")
+	inputString = f.read()
+	print(findShortest(inputString)[0])

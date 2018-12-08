@@ -10,6 +10,8 @@
 # maybe the way to find the boundary is to maximize area but minimize perimeter?
 # how do you find the minimum area that contains all points?
 
+# maybe i can try adding one point at a time to a list (or find all possible combinations in a list of lists), and calculating the area of each permutation of that list, and find max? Question is, what happens when you use the polygon area function below when things intersect?
+
 import sys
 
 def gridDistance(vector1, vector2):

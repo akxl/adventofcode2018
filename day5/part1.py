@@ -3,16 +3,19 @@
 
 def processString(string):
 	listOfLetters = list(string)
-	length = len(string)
-	while length > 10:
-		for i in range(0, len(string) - 1):
+	currentLength = len(string)
+	possible = True
+	while currentLength > 10:
+		print("Current length: " + str(currentLength))
+		print(listOfLetters[-5:])
+		for i in range(0, len(listOfLetters) - 1):
 			curr = listOfLetters[i]
 			next = listOfLetters[i+1]
 			if (curr.lower() == next.lower()) and ((curr.isupper() and next.islower()) or (curr.islower() and next.isupper())):
 				listOfLetters = listOfLetters[:i] + listOfLetters[i+2:]
-				length = len(listOfLetters)
+				currentLength = len(listOfLetters)
 				break
-	return("".join(listOfLetters))		
+	return(len("".join(listOfLetters)))
 		
 
 
@@ -26,5 +29,9 @@ if __name__ == "__main__":
 	print("Test #1:")
 	
 	print(processString(testString))
-	
 	print(processString(testString) == expectedOutput)
+	
+	print("########## Part 1 Actual ##########")
+	f = open("input.txt", "r")
+	inputString = f.read()
+	print(processString(inputString))

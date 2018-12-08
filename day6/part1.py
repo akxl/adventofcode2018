@@ -5,12 +5,12 @@
 # My hypothesis is that, for a given Manhatten Grid and specified points, points that lie on the bonundary will have an infinite number of other points in the Grid that are closest to it. My question is then, how to I determine this boundary? So that I can pin point the specified points on the boundary so that I can discount them?
 # My guess is that for the general case, I should search for the combinatio of specified points that I can put on the boundary that will give me the largest area.
 # Or if I am lazy, I can just precalculate the boundary by hand for this particular exercise, and discount the points on said boundary.
-# Note that for this exercise, the 'wall' on x=0 and y=0 are boundaries too, but the specified points on this boundary may or may not result in an infinite number of other points that are closest to said specified points.
 
 # maybe the way to find the boundary is to maximize area but minimize perimeter?
 # how do you find the minimum area that contains all points?
 
 # maybe i can try adding one point at a time to a list (or find all possible combinations in a list of lists), and calculating the area of each permutation of that list, and find max? Question is, what happens when you use the polygon area function below when things intersect?
+# My guess is that order does not matter.
 
 import sys
 

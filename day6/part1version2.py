@@ -68,6 +68,8 @@ def drawMapOfClosestAreas(listOfCoordinates):
 				if distance < closestDistance:
 					closestLabel = label
 					closestDistance = distance
+				elif distance == closestDistance and label != closestLabel:
+					closestLabel = "."
 			rowResult.append(closestLabel)
 		result.append(rowResult)
 	return(result)

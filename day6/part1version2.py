@@ -59,6 +59,7 @@ def drawMapOfClosestAreas(listOfCoordinates):
 	for rowNum in range(0, numOfRow):
 		rowResult = []
 		for colNum in range(0, numOfCol):
+			print(rowNum, colNum)
 			closestLabel = -1
 			closestDistance = sys.maxsize
 			for label, coordinates in enumerate(listOfCoordinates):
@@ -145,5 +146,12 @@ if __name__ == "__main__":
 	testCount = countArea(testMapOfClosests, testInfinites)
 	print(testCount == {3:9, 4:17})
 	print(findMax(testCount) == (4,17))
+	
+	#################### Actual Part 1
+	input = readInputs("input.txt")
+	mapOfClosest = drawMapOfClosestAreas(input)
+	infinities = findLabelsOnTheBoundary(mapOfClosest)
+	count = countArea(mapOfClosest, infinities)
+	print(findMax(count))
 	
 	

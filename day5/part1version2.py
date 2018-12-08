@@ -1,4 +1,4 @@
-# Advent of Code 2018 Day 5
+# Advent of Code 2018 Day 5 Part 1 Version 2
 # Author: Aaron Leong
 
 def processString(string):
@@ -41,6 +41,7 @@ if __name__ == "__main__":
 	print(processString(testString))
 	print(processString(testString) == (len(expectedOutput), expectedOutput))
 	
+	######### part 1 actual
 	print("########## Part 1 Actual ##########")
 	f = open("input.txt", "r")
 	inputString = f.read()

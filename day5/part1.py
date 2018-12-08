@@ -1,4 +1,4 @@
-# Advent of Code 2018 Day 5
+# Advent of Code 2018 Day 5 Part 1
 # Author: Aaron Leong
 
 def processString(string):

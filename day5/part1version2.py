@@ -7,8 +7,8 @@ def processString(string):
 	start = 0
 	possible = True
 	while possible:
-		print("Current length: " + str(currentLength))
-		print(listOfLetters[-5:])
+		#print("Current length: " + str(currentLength))
+		#print(listOfLetters[-5:])
 		for i in range(start, len(listOfLetters) - 1, 1):
 			curr = listOfLetters[i]
 			next = listOfLetters[i+1]
@@ -19,7 +19,7 @@ def processString(string):
 				currentLength = len(listOfLetters)
 				start = i - 1 if i - 1 > 0 else 0
 				break
-			if i == len(listOfLetters) - 2:
+			if i == len(listOfLetters) - 2 or i == len(listOfLetters) - 3:
 				#print(i)
 				#print(len(listOfLetters) - 2)
 				possible = False

@@ -62,9 +62,9 @@ def drawMapOfClosestAreas(listOfCoordinates):
 			closestLabel = -1
 			closestDistance = sys.maxsize
 			for label, coordinates in enumerate(listOfCoordinates):
-				print(label, coordinates, (colNum,rowNum))
+				#print(label, coordinates, (colNum,rowNum))
 				distance = gridDistance((colNum, rowNum), coordinates)
-				print(distance)
+				#print(distance)
 				if distance < closestDistance:
 					closestLabel = label
 					closestDistance = distance
@@ -92,7 +92,18 @@ def findLabelsOnTheBoundary(twoDArray):
 		rightCell = twoDArray[rowNum][numOfCol - 1]
 		labels.add(rightCell)
 	return(labels)
-	
+
+
+def countMaxArea(twoDArray, setOfInfinites):
+	relevantColumns = list(range(1, len(twoDArray[0]) - 1))
+	searchArea = twoDArray[1:-1]
+	numOfRow = len(searchArea)
+	for rowNum in range(0, numOfRow):
+		for colNum in relevantColumns:
+			for infinite in list(setOfInfinites):
+				print("todo")
+				
+	return(1)
 
 def readInputs(filename):
 	f = open(filename, "r")
@@ -117,7 +128,8 @@ if __name__ == "__main__":
 		(8, 9)
 	]
 	
-	infinite = drawMapOfClosestAreas(testListOfCoordinates)
-	print(findLabelsOnTheBoundary(infinite))
+	mapOfClosests = drawMapOfClosestAreas(testListOfCoordinates)
+	testInfinites = findLabelsOnTheBoundary(mapOfClosests)
+	print(testInfinites ==  set([0,1,2,'.',5]))
 	
 	

@@ -8,6 +8,7 @@
 # Note that for this exercise, the 'wall' on x=0 and y=0 are boundaries too, but the specified points on this boundary may or may not result in an infinite number of other points that are closest to said specified points.
 
 # maybe the way to find the boundary is to maximize area but minimize perimeter?
+# how do you find the minimum area that contains all points?
 
 import sys
 
@@ -49,6 +50,15 @@ def areaOfPolygonIn2dEuclideanSpace(listOfCoordinates):
 		area += ((listOfCoordinates[j][1] + listOfCoordinates[i][1]) * (listOfCoordinates[j][0] - listOfCoordinates[i][0]))
 		j = i
 	return(abs(area)/2.0)
+	
+def readInputs(filename):
+	f = open(filename, "r")
+	lines = f.read().split("\n")
+	result = []
+	for line in lines:
+		numbers = list(map(int, line.split(",")))
+		result.append((numbers[0], numbers[1]))
+	return(result)
 
 if __name__ == "__main__":
 	
@@ -69,4 +79,6 @@ if __name__ == "__main__":
 	print(areaOfPolygonIn2dEuclideanSpace([(2,2), (4,10), (9,7), (11,2)]) == 45.5)
 	draw2dMapOfSpecifiedPoints(testListOfCoordinates)
 	
-	
+	#################### Part 2 actual
+	input = readInputs("input.txt")
+	draw2dMapOfSpecifiedPoints(input) # will need to print this to a csv or something to visualise

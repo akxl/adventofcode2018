@@ -1,5 +1,5 @@
 # Advent of Code 2018 Day 7 Part 1
-# Author 
+# Author
 
 class Process:
     completedParentProcesses = []
@@ -14,6 +14,12 @@ class Process:
 
     def addParentProcess(self, parentProcess):
         self.parentProcesses.append(parentProcess)
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
 
     def __str__(self):
         return f"Name: {self.name}; Parents: {self.parentProcesses}; Children: {self.subProcesses}"
@@ -47,8 +53,17 @@ def readAndStoreInputs(filename):
     return(processes) # shit, how do I know what the parent is if it is in a list? I want to just return the parent
 
 
+def findEnd(processes):
+    return list(filter(lambda process: len(process.subProcesses) == 0, processes))
+
+
+def findStart(processes):
+    return list(filter(lambda process: len(process.parentProcesses) == 0, processes))
+
+
 if __name__ == "__main__":
     # testing part 1
     testInput = readAndStoreInputs("sample.txt")
     for process in testInput:
         print(process)
+

@@ -155,3 +155,8 @@ if __name__ == "__main__":
 
     print(orderProcesses(testInput))
 
+    actualInput = readAndStoreInputs("input.txt")
+    for input in actualInput:
+        print(input) # in this case, it seems like I have W, N, M and Q  as possible starting points. It is not a single point of entry.
+    #print(orderProcesses(actualInput))
+

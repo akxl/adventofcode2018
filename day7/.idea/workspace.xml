@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e14fe514-006d-44f7-b95d-d02ea4b53487" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/part1test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1.py" afterDir="false" />
     </list>
@@ -14,20 +13,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/part1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="22" />
+            <state relative-caret-position="391">
+              <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/part1test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+            <state relative-caret-position="459">
+              <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -53,15 +52,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/sample.txt" />
-        <option value="$PROJECT_DIR$/part1.py" />
         <option value="$PROJECT_DIR$/part1test.py" />
+        <option value="$PROJECT_DIR$/part1.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="296" />
+    <option name="y" value="-12" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -98,7 +98,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Unittests for part1test.Part1Test">
     <configuration name="part1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="day7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,9 +120,69 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for part1test.Part1Test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;part1test.Part1Test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for part1test.Part1Test.testFindEnd" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;part1test.Part1Test.testFindEnd&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for part1test.Part1Test.testFindStart" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;part1test.Part1Test.testFindStart&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for part1test.Part1Test.testReadAndStoreInputs" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="day7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;part1test.Part1Test.testReadAndStoreInputs&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for part1test.Part1Test" />
         <item itemvalue="Python.part1" />
+        <item itemvalue="Python tests.Unittests for part1test.Part1Test.testFindEnd" />
+        <item itemvalue="Python tests.Unittests for part1test.Part1Test.testFindStart" />
+        <item itemvalue="Python tests.Unittests for part1test.Part1Test.testReadAndStoreInputs" />
       </list>
     </recent_temporary>
   </component>
@@ -139,12 +199,41 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_for_part1test_Part1Test_testReadAndStoreInputs - 2018.12.10 at 21h 24m 28s.xml">
+      <configuration name="Unittests for part1test.Part1Test.testReadAndStoreInputs" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test_testFindStart - 2018.12.10 at 21h 26m 26s.xml">
+      <configuration name="Unittests for part1test.Part1Test.testFindStart" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test_testFindStart - 2018.12.10 at 21h 26m 46s.xml">
+      <configuration name="Unittests for part1test.Part1Test.testFindStart" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test - 2018.12.10 at 21h 27m 29s.xml">
+      <configuration name="Unittests for part1test.Part1Test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test_testFindEnd - 2018.12.10 at 21h 27m 37s.xml">
+      <configuration name="Unittests for part1test.Part1Test.testFindEnd" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test_testFindEnd - 2018.12.10 at 21h 27m 49s.xml">
+      <configuration name="Unittests for part1test.Part1Test.testFindEnd" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test - 2018.12.10 at 21h 27m 55s.xml">
+      <configuration name="Unittests for part1test.Part1Test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test - 2018.12.10 at 22h 03m 32s.xml">
+      <configuration name="Unittests for part1test.Part1Test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_part1test_Part1Test - 2018.12.10 at 22h 04m 27s.xml">
+      <configuration name="Unittests for part1test.Part1Test" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25213677" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12434141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -152,7 +241,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33260393" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -170,20 +259,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/part1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/part1test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        <state relative-caret-position="459">
+          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
         </state>
       </provider>
     </entry>

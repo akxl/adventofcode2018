@@ -1,28 +1,47 @@
 # Advent of Code 2018 Day 7 Part 1
-# Author
+# Author: Aaron
+
+from typing import List
 
 class Process:
     completedParentProcesses = []
+    internalCounter = 0
 
-    def __init__(self, name, subProcesses, parentProcesses):
+    def __init__(self, name: str, subProcesses: List[str], parentProcesses: List[str]):
         self.name = name
-        self.subProcesses = subProcesses
-        self.parentProcesses = parentProcesses
+        self.childProcesses = sorted(subProcesses)
+        self.parentProcesses = sorted(parentProcesses)
+        self.numberOfChildProcesses = len(subProcesses)
+        self.numberOfParentProcesses = len(parentProcesses)
 
-    def addChildProcess(self, subProcess):
-        self.subProcesses.append(subProcess)
+    def addChildProcess(self, subProcess: str) -> None:
+        self.childProcesses.append(subProcess)
+        self.numberOfChildProcesses += 1
 
-    def addParentProcess(self, parentProcess):
+    def addParentProcess(self, parentProcess: str) -> None:
         self.parentProcesses.append(parentProcess)
+        self.numberOfParentProcesses += 1
 
-    def __eq__(self, other):
+    def getNextChildProcess(self) -> str:
+        if self.internalCounter < self.numberOfChildProcesses:
+            return self.childProcesses[self.internalCounter]
+        else:
+            return "You have run out of child processes"
+
+    def getChildProcesses(self) -> List[str]:
+        return sorted(self.childProcesses)
+
+    def getParentProcesses(self) -> List[str]:
+        return sorted(self.parentProcesses)
+
+    def __eq__(self, other) -> bool:
         if isinstance(other, self.__class__):
             return self.__dict__ == other.__dict__
         else:
             return False
 
-    def __str__(self):
-        return f"Name: {self.name}; Parents: {self.parentProcesses}; Children: {self.subProcesses}"
+    def __str__(self) -> str:
+        return f"Name: {self.name}; Parents: {self.parentProcesses}; Children: {self.childProcesses}"
 
 
 def readAndStoreInputs(filename):
@@ -54,11 +73,29 @@ def readAndStoreInputs(filename):
 
 
 def findEnd(processes):
-    return list(filter(lambda process: len(process.subProcesses) == 0, processes))
+    return list(filter(lambda process: len(process.childProcesses) == 0, processes))
 
 
 def findStart(processes):
     return list(filter(lambda process: len(process.parentProcesses) == 0, processes))
+
+
+def orderProcesses(processes: List[Process]) -> List[str]:
+    startingProcess: Process = sorted(findStart(processes), key=lambda x: x.name)[0]
+    endingProcess: Process = sorted(findEnd(processes), key=lambda  x: x.name)[0]
+
+    properOrder = []
+
+    # get my children
+    childProcesses: List[str] = sorted(startingProcess.subProcesses)
+    for childProcess in childProcesses:
+        currentProcess: Process = list(filter(lambda x: x.name == childProcess, processes))[0]
+        Process
+
+    return properOrder
+
+
+
 
 
 if __name__ == "__main__":

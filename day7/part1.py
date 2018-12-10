@@ -22,11 +22,24 @@ class Process:
         self.parentProcesses.append(parentProcess)
         self.numberOfParentProcesses += 1
 
+    def sneakpeak(self) -> str:
+        return self.childProcesses[self.internalCounter]
+
     def getNextChildProcess(self) -> str:
         if self.internalCounter < self.numberOfChildProcesses:
-            return self.childProcesses[self.internalCounter]
+            nextChild = self.childProcesses[self.internalCounter]
+            self.internalCounter += 1
+            return nextChild
         else:
             return "You have run out of child processes"
+
+    def flipChildProcesses(self, reattempt: int):
+        partone = [self.childProcesses[reattempt]]
+        parttwo = self.childProcesses[:reattempt]
+        partthree = self.childProcesses[reattempt + 1:]
+        self.childProcesses = partone
+        self.childProcesses.append(parttwo)
+        self.childProcesses.append(partthree)
 
     def getChildProcesses(self) -> List[str]:
         return sorted(self.childProcesses)
@@ -84,13 +97,32 @@ def orderProcesses(processes: List[Process]) -> List[str]:
     startingProcess: Process = sorted(findStart(processes), key=lambda x: x.name)[0]
     endingProcess: Process = sorted(findEnd(processes), key=lambda  x: x.name)[0]
 
-    properOrder = []
+    properOrder = [startingProcess.name]
+    currentProcess = startingProcess
+    nextProcessName = startingProcess.sneakpeak()
+    print("^^^^^")
+    print(nextProcessName)
 
-    # get my children
-    childProcesses: List[str] = sorted(startingProcess.subProcesses)
-    for childProcess in childProcesses:
-        currentProcess: Process = list(filter(lambda x: x.name == childProcess, processes))[0]
-        Process
+    i = 0
+    while len(properOrder) == 0 or properOrder[-1] != endingProcess.name:
+        i = i + 1
+        print(i)
+        print(properOrder)
+        nextProcess = list(filter(lambda x: x.name == nextProcessName, processes))[0]
+        print(nextProcess)
+
+        attempt = 0
+        if set(nextProcess.getParentProcesses()).issubset(set(properOrder)):
+            newCurrentProcessName = currentProcess.getNextChildProcess()
+            print("my new current process name")
+            print(newCurrentProcessName)
+            properOrder.append(newCurrentProcessName)
+            currentProcess = list(filter(lambda x: x.name == newCurrentProcessName, processes))[0]
+            nextProcessName = currentProcess.sneakpeak()
+        else:
+            attempt += 1
+            currentProcess.flipChildProcesses(attempt)
+            nextProcessName = currentProcess.sneakpeak()
 
     return properOrder
 
@@ -101,6 +133,8 @@ def orderProcesses(processes: List[Process]) -> List[str]:
 if __name__ == "__main__":
     # testing part 1
     testInput = readAndStoreInputs("sample.txt")
-    for process in testInput:
-        print(process)
+    #for process in testInput:
+    #    print(process)
+
+    orderProcesses(testInput)
 

@@ -26,6 +26,9 @@ class Process:
     def __str__(self) -> str:
         return f"Name: {self.name}; Parent processes: {self.parentProcesses}; Child processes: {self.childProcesses}"
 
+    def __repr__(self) -> str:
+        return str(self)
+
 
 class ProcessBuilder:
 
@@ -45,8 +48,11 @@ class ProcessBuilder:
         parentProcesses = sorted(list(self.parentProcesses))
         return Process(self.name, parentProcesses, childProcesses)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Name: {self.name}; Parent processes: {self.parentProcesses}; Child processes: {self.childProcesses};"
+
+    def __repr__(self) -> str:
+        return str(self)
 
 
 def readInputFile(filename: str) -> List[Process]:
@@ -62,8 +68,35 @@ def readInputFile(filename: str) -> List[Process]:
     return [x.build() for x in processesDictionary.values()]
 
 
+def findFirsts(processes: List[Process]) -> List[Process]:
+    return sorted(list(filter(lambda x: not x.getParentProcesses(), processes)), key=lambda x: x.name)
+
+
+def findLasts(processes: List[Process]) -> List[Process]:
+    return sorted(list(filter(lambda x: not x.getChildProcesses(), processes)), key=lambda x: x.name)
+
+
+def processProcesses(processes: List[Process]) -> List[str]:
+    result: List[str] = []
+    workingList: List[Process] = processes
+    firsts = findFirsts(processes)
+
+    for x in firsts:
+        result.append(x.name)
+        workingList.remove(x)
+
+    while len(workingList) > 0:
+        workingList = sorted(workingList, key=lambda elem: elem.name)
+        for process in workingList:
+            if set(process.parentProcesses).issubset(set(result)):
+                result.append(process.name)
+                workingList.remove(process)
+                break
+
+    return list(result)
+
+
 if __name__ == "__main__":
-    processes = readInputFile("sample.txt")
-    for process in processes:
-        print(process)
+    testProcesses = readInputFile("sample.txt")
+    print(processProcesses(testProcesses) == ["C", "A", "B", "D", "F", "E"])
 

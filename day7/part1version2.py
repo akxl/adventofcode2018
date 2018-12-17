@@ -80,10 +80,8 @@ def processProcesses(processes: List[Process]) -> List[str]:
     result: List[str] = []
     workingList: List[Process] = processes
     firsts = findFirsts(processes)
-
-    for x in firsts:
-        result.append(x.name)
-        workingList.remove(x)
+    result.append(firsts[0].name)
+    workingList.remove(firsts[0])
 
     while len(workingList) > 0:
         workingList = sorted(workingList, key=lambda elem: elem.name)
@@ -100,3 +98,5 @@ if __name__ == "__main__":
     testProcesses = readInputFile("sample.txt")
     print(processProcesses(testProcesses) == ["C", "A", "B", "D", "F", "E"])
 
+    processes = readInputFile("input.txt")
+    print("".join(processProcesses(processes))) # MNQKRSFWGXPZJCOTVYEBLAHIUD
